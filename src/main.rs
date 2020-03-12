@@ -12,22 +12,49 @@ fn main() {
         .arg(Arg::with_name("install")
 			 .short("i")
 			 .long("install")
-			 .help("Install a package. Note: It automatically confirms the installation.")
+			 .help("Install (a) package(s). Note: It automatically confirms the installation.")
 		     .value_name("PKGS")
-		     .takes_value(true)
-		     .multiple(true))
-		.arg(Arg::with_name("search")
-			 .short("s")
-			 .long("search")
-			 .help("Search for a package.")
-		     .value_name("SEARCHES")
 		     .takes_value(true)
 		     .multiple(true))
 		.arg(Arg::with_name("list")
 			 .short("l")
 			 .long("list")
 			 .help("List currently installed packages."))
+		.arg(Arg::with_name("remove")
+			 .short("r")
+			 .long("remove")
+			 .help("Remove (a) package(s). Note: It automatically confirms the removal.")
+		     .value_name("PKGS")
+		     .takes_value(true)
+		     .multiple(true))
+		.arg(Arg::with_name("search")
+			 .short("s")
+			 .long("search")
+			 .help("Search for (a) package(s).")
+		     .value_name("SEARCHES")
+		     .takes_value(true)
+		     .multiple(true))
 		.get_matches();
+	if let Some(in_install) = matches.values_of("install") {
+        for i in in_install {
+		    Command::new("emerge")
+			    .arg("-t")
+			    .arg("-v")
+			    .arg(i)
+			    .spawn()
+			    .expect("Failed to install the package(s).");
+		}
+    }
+	if let Some(in_remove) = matches.values_of("remove") {
+        for r in in_remove {
+		    Command::new("emerge")
+			    .arg("-v")
+			    .arg("-c")
+			    .arg(r)
+			    .spawn()
+			    .expect("Failed to remove the package(s).");
+		}
+    }
 	if matches.is_present("list") {
 		for entry in glob("/var/db/pkg/*/*/").expect("Failed to read glob pattern") {
             match entry {
@@ -42,18 +69,8 @@ fn main() {
 			    .arg("-s")
 			    .arg(s)
 			    .output()
-			    .expect("Failed to search for the package.");
+			    .expect("Failed to search for the package(s).");
 		    println!("{}", String::from_utf8_lossy(&results.stdout));
-		}
-    }
-	if let Some(in_install) = matches.values_of("install") {
-        for i in in_install {
-		    Command::new("emerge")
-			    .arg("-t")
-			    .arg("-v")
-			    .arg(i)
-			    .spawn()
-			    .expect("Failed to install the package.");
 		}
     }
 }

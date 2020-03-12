@@ -18,6 +18,7 @@ FLAGS:
     -h, --help       Prints help information
     -l, --list       List currently installed packages.
     -V, --version    Prints version information
+    -w, --world      Prints the contents of your world file.
 
 OPTIONS:
     -i, --install <PKGS>...       Install (a) package(s). Note: It automatically confirms the installation.

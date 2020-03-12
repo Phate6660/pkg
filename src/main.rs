@@ -9,6 +9,12 @@ fn main() {
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
 		.about("A cli frontend for emerge. Why? Because I can.")
+        .arg(Arg::with_name("install")
+			 .short("i")
+			 .long("install")
+			 .help("Install a package. Note: It automatically confirms the installation.")
+		     .value_name("PKG")
+		     .takes_value(true))
 		.arg(Arg::with_name("search")
 			 .short("s")
 			 .long("search")
@@ -35,5 +41,13 @@ fn main() {
 			.output()
 			.expect("Failed to search for the package.");
 		println!("{}", String::from_utf8_lossy(&results.stdout));
+    }
+	if let Some(i) = matches.value_of("install") {
+        Command::new("emerge")
+			.arg("-t")
+			.arg("-v")
+			.arg(i)
+			.spawn()
+			.expect("Failed to install the package.");
     }
 }

@@ -20,8 +20,9 @@ FLAGS:
     -V, --version    Prints version information
 
 OPTIONS:
-    -i, --install <PKGS>...       Install a package. Note: It automatically confirms the installation.
-    -s, --search <SEARCHES>...    Search for a package.
+    -i, --install <PKGS>...       Install (a) package(s). Note: It automatically confirms the installation.
+    -r, --remove <PKGS>...        Remove (a) package(s). Note: It automatically confirms the removal.
+    -s, --search <SEARCHES>...    Search for (a) package(s).
 ```
 
 ## Roadmap

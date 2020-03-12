@@ -13,14 +13,16 @@ fn main() {
 			 .short("i")
 			 .long("install")
 			 .help("Install a package. Note: It automatically confirms the installation.")
-		     .value_name("PKG")
-		     .takes_value(true))
+		     .value_name("PKGS")
+		     .takes_value(true)
+		     .multiple(true))
 		.arg(Arg::with_name("search")
 			 .short("s")
 			 .long("search")
 			 .help("Search for a package.")
-		     .value_name("SEARCH")
-		     .takes_value(true))
+		     .value_name("SEARCHES")
+		     .takes_value(true)
+		     .multiple(true))
 		.arg(Arg::with_name("list")
 			 .short("l")
 			 .long("list")
@@ -34,20 +36,24 @@ fn main() {
             }
         }
 	}
-	if let Some(s) = matches.value_of("search") {
-        let results = Command::new("emerge")
-			.arg("-s")
-			.arg(s)
-			.output()
-			.expect("Failed to search for the package.");
-		println!("{}", String::from_utf8_lossy(&results.stdout));
+	if let Some(in_search) = matches.values_of("search") {
+        for s in in_search {
+		    let results = Command::new("emerge")
+			    .arg("-s")
+			    .arg(s)
+			    .output()
+			    .expect("Failed to search for the package.");
+		    println!("{}", String::from_utf8_lossy(&results.stdout));
+		}
     }
-	if let Some(i) = matches.value_of("install") {
-        Command::new("emerge")
-			.arg("-t")
-			.arg("-v")
-			.arg(i)
-			.spawn()
-			.expect("Failed to install the package.");
+	if let Some(in_install) = matches.values_of("install") {
+        for i in in_install {
+		    Command::new("emerge")
+			    .arg("-t")
+			    .arg("-v")
+			    .arg(i)
+			    .spawn()
+			    .expect("Failed to install the package.");
+		}
     }
 }

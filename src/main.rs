@@ -2,6 +2,8 @@ extern crate clap;
 extern crate glob;
 use clap::{Arg, App};
 use glob::glob;
+use std::fs::File;
+use std::io::prelude::*;
 use std::process::Command;
 
 fn main() {
@@ -34,6 +36,10 @@ fn main() {
 		     .value_name("SEARCHES")
 		     .takes_value(true)
 		     .multiple(true))
+		.arg(Arg::with_name("world")
+			 .short("w")
+			 .long("world")
+			 .help("Prints the contents of your world file."))
 		.get_matches();
 	if let Some(in_install) = matches.values_of("install") {
         for i in in_install {
@@ -73,4 +79,10 @@ fn main() {
 		    println!("{}", String::from_utf8_lossy(&results.stdout));
 		}
     }
+	if matches.is_present("world") {
+		let mut file = File::open("/var/lib/portage/world").expect("Unable to open the file");
+        let mut contents = String::new();
+        file.read_to_string(&mut contents).expect("Unable to read the file");
+        println!("{}", contents);
+	}
 }

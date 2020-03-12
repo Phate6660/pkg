@@ -17,6 +17,7 @@ USAGE:
 FLAGS:
     -h, --help       Prints help information
     -l, --list       List currently installed packages.
+    -S, --sync       Update repos and overlays.
     -V, --version    Prints version information
     -w, --world      Prints the contents of your world file.
 

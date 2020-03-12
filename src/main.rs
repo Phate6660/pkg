@@ -36,6 +36,10 @@ fn main() {
 		     .value_name("SEARCHES")
 		     .takes_value(true)
 		     .multiple(true))
+		.arg(Arg::with_name("sync")
+			 .short("S")
+			 .long("sync")
+			 .help("Update repos and overlays."))
 		.arg(Arg::with_name("world")
 			 .short("w")
 			 .long("world")
@@ -79,6 +83,12 @@ fn main() {
 		    println!("{}", String::from_utf8_lossy(&results.stdout));
 		}
     }
+	if matches.is_present("sync") {
+		Command::new("emerge")
+			    .arg("--sync")
+			    .spawn()
+			    .expect("Failed to sync.");
+	}
 	if matches.is_present("world") {
 		let mut file = File::open("/var/lib/portage/world").expect("Unable to open the file");
         let mut contents = String::new();

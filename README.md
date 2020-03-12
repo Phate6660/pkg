@@ -22,9 +22,9 @@ FLAGS:
     -w, --world      Prints the contents of your world file.
 
 OPTIONS:
-    -i, --install <PKGS>...       Install (a) package(s). Note: It automatically confirms the installation.
-    -r, --remove <PKGS>...        Remove (a) package(s). Note: It automatically confirms the removal.
-    -s, --search <SEARCHES>...    Search for (a) package(s).
+    -i, --install <PKGS>...       Install package(s). Note: It automatically confirms the installation.
+    -r, --remove <PKGS>...        Remove package(s). Note: It automatically confirms the removal.
+    -s, --search <SEARCHES>...    Search for package(s).
 ```
 
 ## Roadmap

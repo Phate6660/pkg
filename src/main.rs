@@ -10,7 +10,7 @@ fn main() {
     let matches = App::new("pkg")
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
-		.about("A cli frontend for emerge. Why? Because I can.\n\nNote: Cleaning, installing, and removing packages are automatically confirmed.\nUse at your own risk.")
+		.about("A cli frontend for emerge. Why? Because I can.\n\nNote: Package operations are automatically confirmed.\nUse at your own risk.")
         .arg(Arg::with_name("clean")
 			 .short("c")
 			 .long("clean")
@@ -26,6 +26,10 @@ fn main() {
 			 .short("l")
 			 .long("list")
 			 .help("List currently installed packages."))
+		.arg(Arg::with_name("portup")
+			 .short("p")
+			 .long("portup")
+			 .help("One-shot emerge portage. Used when you need to specifically update porage."))
 		.arg(Arg::with_name("remove")
 			 .short("r")
 			 .long("remove")
@@ -66,6 +70,21 @@ fn main() {
 			    .expect("Failed to install the package(s).");
 		}
     }
+	if matches.is_present("list") {
+		for entry in glob("/var/db/pkg/*/*/").expect("Failed to read glob pattern") {
+            match entry {
+                Ok(path) => println!("{:?}", path.display()),
+                Err(e) => println!("{:?}", e),
+            }
+        }
+	}
+	if matches.is_present("portup") {
+		Command::new("emerge")
+			.arg("-1")
+			.arg("sys-apps/portage")
+			.spawn()
+			.expect("Failed to update Portage.");
+	}
 	if let Some(in_remove) = matches.values_of("remove") {
         for r in in_remove {
 		    Command::new("emerge")
@@ -76,14 +95,6 @@ fn main() {
 			    .expect("Failed to remove the package(s).");
 		}
     }
-	if matches.is_present("list") {
-		for entry in glob("/var/db/pkg/*/*/").expect("Failed to read glob pattern") {
-            match entry {
-                Ok(path) => println!("{:?}", path.display()),
-                Err(e) => println!("{:?}", e),
-            }
-        }
-	}
 	if let Some(in_search) = matches.values_of("search") {
         for s in in_search {
 		    let results = Command::new("emerge")

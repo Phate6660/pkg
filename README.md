@@ -11,7 +11,7 @@ pkg 0.0.1
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge. Why? Because I can.
 
-Note: Cleaning, installing, and removing packages are automatically confirmed.
+Note: Package operations are automatically confirmed.
 Use at your own risk.
 
 USAGE:
@@ -21,6 +21,7 @@ FLAGS:
     -c, --clean      Remove any un-needed packages.
     -h, --help       Prints help information
     -l, --list       List currently installed packages.
+    -p, --portup     One-shot emerge portage. Used when you need to specifically update porage.
     -S, --sync       Update repos and overlays.
     -V, --version    Prints version information
     -w, --world      Prints the contents of your world file.

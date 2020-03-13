@@ -11,6 +11,9 @@ pkg 0.0.1
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge, plus some extra features. Why? Because I can.
 
+Note: Package operations require root.
+So run with your preferred method of privilege elevation, otherwise emerge will ask if you want to pretend.
+
 USAGE:
     pkg [FLAGS] [OPTIONS]
 
@@ -20,13 +23,14 @@ FLAGS:
     -l, --list       List currently installed packages.
     -p, --portup     One-shot emerge portage. Used when you need to specifically update porage.
     -S, --sync       Update repos and overlays.
+    -u, --update     Update any installed packages.
     -V, --version    Prints version information
     -w, --world      Prints the contents of your world file.
 
 OPTIONS:
     -f, --frem <PKGS>...          Force remove package(s).
     -i, --install <PKGS>...       Install package(s).
-    -r, --remove <PKGS>...        Remove package(s).
+	-r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).
 ```
 

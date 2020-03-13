@@ -11,7 +11,7 @@ fn main() {
     let matches = App::new("pkg")
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
-		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.")
+		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.\n\nNote: Package operations require root.\nSo run with your preferred method of privilege elevation, otherwise emerge will ask if you want to pretend.")
         .arg(Arg::with_name("clean")
 			 .short("c")
 			 .long("clean")
@@ -52,6 +52,10 @@ fn main() {
 		     .value_name("SEARCHES")
 		     .takes_value(true)
 		     .multiple(true))
+		.arg(Arg::with_name("update")
+			 .short("u")
+			 .long("update")
+			 .help("Update any installed packages."))
 		.arg(Arg::with_name("sync")
 			 .short("S")
 			 .long("sync")
@@ -150,6 +154,22 @@ fn main() {
 			    .stdout(Stdio::inherit())
 			    .output()
 			    .expect("Failed to sync.");
+		io::stdout().write_all(&child.stdout).unwrap();
+	}
+	if matches.is_present("update") {
+		let child = Command::new("emerge")
+				.arg("-a")
+			    .arg("-v")
+			    .arg("-u")
+			    .arg("-D")
+			    .arg("-N")
+			    .arg("--with-bdeps")
+			    .arg("y")
+			    .arg("@world")
+				.stdin(Stdio::inherit())
+				.stdout(Stdio::inherit())
+			    .output()
+			    .expect("Failed to remove the package(s).");
 		io::stdout().write_all(&child.stdout).unwrap();
 	}
 	if matches.is_present("world") {

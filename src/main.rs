@@ -106,7 +106,7 @@ fn main() {
 	}
 	if matches.is_present("portup") {
 		let child = Command::new("emerge")
-			.args(&["-a", "-1", "sys-apps/portage"})
+			.args(&["-a", "-1", "sys-apps/portage"])
 			.stdin(Stdio::inherit())
 			.stdout(Stdio::inherit())
 			.output()

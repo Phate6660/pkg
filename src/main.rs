@@ -135,19 +135,22 @@ fn main() {
     }
 	if let Some(in_search) = matches.values_of("search") {
         for s in in_search {
-		    let results = Command::new("emerge")
+		    let child = Command::new("emerge")
 			    .arg("-s")
 			    .arg(s)
+				.stdout(Stdio::inherit())
 			    .output()
 			    .expect("Failed to search for the package(s).");
-		    println!("{}", String::from_utf8_lossy(&results.stdout));
+			io::stdout().write_all(&child.stdout).unwrap();
 		}
     }
 	if matches.is_present("sync") {
-		Command::new("emerge")
+		let child = Command::new("emerge")
 			    .arg("--sync")
-			    .spawn()
+			    .stdout(Stdio::inherit())
+			    .output()
 			    .expect("Failed to sync.");
+		io::stdout().write_all(&child.stdout).unwrap();
 	}
 	if matches.is_present("world") {
 		let mut file = File::open("/var/lib/portage/world").expect("Unable to open the file");

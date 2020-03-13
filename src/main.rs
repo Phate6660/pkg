@@ -10,7 +10,7 @@ fn main() {
     let matches = App::new("pkg")
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
-		.about("A cli frontend for emerge. Why? Because I can.\n\nNote: Package operations are automatically confirmed.\nUse at your own risk.")
+		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.\n\nNote: Package operations are automatically confirmed.\nUse at your own risk.")
         .arg(Arg::with_name("clean")
 			 .short("c")
 			 .long("clean")

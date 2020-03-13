@@ -27,6 +27,7 @@ FLAGS:
     -w, --world      Prints the contents of your world file.
 
 OPTIONS:
+    -f, --frem <PKGS>...          Force remove a package.
     -i, --install <PKGS>...       Install package(s).
     -r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).

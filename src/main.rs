@@ -15,6 +15,13 @@ fn main() {
 			 .short("c")
 			 .long("clean")
 			 .help("Remove any un-needed packages."))
+        .arg(Arg::with_name("frem")
+			 .short("f")
+			 .long("frem")
+			 .help("Force remove a package.")
+			 .value_name("PKGS")
+			 .takes_value(true)
+			 .multiple(true))
 		.arg(Arg::with_name("install")
 			 .short("i")
 			 .long("install")
@@ -60,6 +67,16 @@ fn main() {
 			.spawn()
 			.expect("Could not clean system of un-needed packages.");
 	}
+	if let Some(in_frem) = matches.values_of("frem") {
+        for f in in_frem {
+		    Command::new("emerge")
+			    .arg("-v")
+			    .arg("-C")
+			    .arg(f)
+			    .spawn()
+			    .expect("Failed to install the package(s).");
+		}
+    }
 	if let Some(in_install) = matches.values_of("install") {
         for i in in_install {
 		    Command::new("emerge")

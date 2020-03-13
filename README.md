@@ -11,9 +11,6 @@ pkg 0.0.1
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge, plus some extra features. Why? Because I can.
 
-Note: Package operations are automatically confirmed.
-Use at your own risk.
-
 USAGE:
     pkg [FLAGS] [OPTIONS]
 

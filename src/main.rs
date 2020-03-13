@@ -4,13 +4,14 @@ use clap::{Arg, App};
 use glob::glob;
 use std::fs::File;
 use std::io::prelude::*;
-use std::process::Command;
+use std::io::{self, Write};
+use std::process::{Command,Stdio};
 
 fn main() {
     let matches = App::new("pkg")
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
-		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.\n\nNote: Package operations are automatically confirmed.\nUse at your own risk.")
+		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.")
         .arg(Arg::with_name("clean")
 			 .short("c")
 			 .long("clean")
@@ -61,30 +62,42 @@ fn main() {
 			 .help("Prints the contents of your world file."))
 		.get_matches();
 	if matches.is_present("clean") {
-		Command::new("emerge")
+		let child = Command::new("emerge")
+			.arg("-a")
 			.arg("-D")
-			.arg("c")
-			.spawn()
+			.arg("-c")
+			.stdin(Stdio::inherit())
+			.stdout(Stdio::inherit())
+			.output()
 			.expect("Could not clean system of un-needed packages.");
+		io::stdout().write_all(&child.stdout).unwrap();
 	}
 	if let Some(in_frem) = matches.values_of("frem") {
         for f in in_frem {
-		    Command::new("emerge")
+		    let child = Command::new("emerge")
+				.arg("-a")
 			    .arg("-v")
 			    .arg("-C")
 			    .arg(f)
-			    .spawn()
+				.stdin(Stdio::inherit())
+				.stdout(Stdio::inherit())
+			    .output()
 			    .expect("Failed to install the package(s).");
+			io::stdout().write_all(&child.stdout).unwrap();
 		}
     }
 	if let Some(in_install) = matches.values_of("install") {
         for i in in_install {
-		    Command::new("emerge")
+		    let child = Command::new("emerge")
+				.arg("-a")
 			    .arg("-t")
 			    .arg("-v")
 			    .arg(i)
-			    .spawn()
+				.stdin(Stdio::inherit())
+				.stdout(Stdio::inherit())
+			    .output()
 			    .expect("Failed to install the package(s).");
+			io::stdout().write_all(&child.stdout).unwrap();
 		}
     }
 	if matches.is_present("list") {
@@ -96,20 +109,28 @@ fn main() {
         }
 	}
 	if matches.is_present("portup") {
-		Command::new("emerge")
+		let child = Command::new("emerge")
+			.arg("-a")
 			.arg("-1")
 			.arg("sys-apps/portage")
-			.spawn()
+			.stdin(Stdio::inherit())
+			.stdout(Stdio::inherit())
+			.output()
 			.expect("Failed to update Portage.");
+		io::stdout().write_all(&child.stdout).unwrap();
 	}
 	if let Some(in_remove) = matches.values_of("remove") {
         for r in in_remove {
-		    Command::new("emerge")
+		    let child = Command::new("emerge")
+				.arg("-a")
 			    .arg("-v")
 			    .arg("-c")
 			    .arg(r)
-			    .spawn()
+				.stdin(Stdio::inherit())
+				.stdout(Stdio::inherit())
+			    .output()
 			    .expect("Failed to remove the package(s).");
+			io::stdout().write_all(&child.stdout).unwrap();
 		}
     }
 	if let Some(in_search) = matches.values_of("search") {

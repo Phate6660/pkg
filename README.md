@@ -11,6 +11,9 @@ pkg 0.0.1
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge. Why? Because I can.
 
+Note: Cleaning, installing, and removing packages are automatically confirmed.
+Use at your own risk.
+
 USAGE:
     pkg [FLAGS] [OPTIONS]
 
@@ -23,8 +26,8 @@ FLAGS:
     -w, --world      Prints the contents of your world file.
 
 OPTIONS:
-    -i, --install <PKGS>...       Install package(s). Note: It automatically confirms the installation.
-    -r, --remove <PKGS>...        Remove package(s). Note: It automatically confirms the removal.
+    -i, --install <PKGS>...       Install package(s).
+    -r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).
 ```
 

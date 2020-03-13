@@ -18,7 +18,7 @@ fn main() {
         .arg(Arg::with_name("frem")
 			 .short("f")
 			 .long("frem")
-			 .help("Force remove a package.")
+			 .help("Force remove package(s).")
 			 .value_name("PKGS")
 			 .takes_value(true)
 			 .multiple(true))

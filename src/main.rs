@@ -67,9 +67,7 @@ fn main() {
 		.get_matches();
 	if matches.is_present("clean") {
 		let child = Command::new("emerge")
-			.arg("-a")
-			.arg("-D")
-			.arg("-c")
+			.args(&["-a", "-D", "-c"])
 			.stdin(Stdio::inherit())
 			.stdout(Stdio::inherit())
 			.output()
@@ -79,10 +77,7 @@ fn main() {
 	if let Some(in_frem) = matches.values_of("frem") {
         for f in in_frem {
 		    let child = Command::new("emerge")
-				.arg("-a")
-			    .arg("-v")
-			    .arg("-C")
-			    .arg(f)
+				.args(&["-a", "-v", "-C", f])
 				.stdin(Stdio::inherit())
 				.stdout(Stdio::inherit())
 			    .output()
@@ -93,10 +88,7 @@ fn main() {
 	if let Some(in_install) = matches.values_of("install") {
         for i in in_install {
 		    let child = Command::new("emerge")
-				.arg("-a")
-			    .arg("-t")
-			    .arg("-v")
-			    .arg(i)
+				.args(&["-a", "-t", "-v", i])
 				.stdin(Stdio::inherit())
 				.stdout(Stdio::inherit())
 			    .output()
@@ -114,9 +106,7 @@ fn main() {
 	}
 	if matches.is_present("portup") {
 		let child = Command::new("emerge")
-			.arg("-a")
-			.arg("-1")
-			.arg("sys-apps/portage")
+			.args(&["-a", "-1", "sys-apps/portage"})
 			.stdin(Stdio::inherit())
 			.stdout(Stdio::inherit())
 			.output()
@@ -126,10 +116,7 @@ fn main() {
 	if let Some(in_remove) = matches.values_of("remove") {
         for r in in_remove {
 		    let child = Command::new("emerge")
-				.arg("-a")
-			    .arg("-v")
-			    .arg("-c")
-			    .arg(r)
+				.args(&["-a", "-v", "-c", r])
 				.stdin(Stdio::inherit())
 				.stdout(Stdio::inherit())
 			    .output()
@@ -140,8 +127,7 @@ fn main() {
 	if let Some(in_search) = matches.values_of("search") {
         for s in in_search {
 		    let child = Command::new("emerge")
-			    .arg("-s")
-			    .arg(s)
+			    .args(&["-s", s])
 				.stdout(Stdio::inherit())
 			    .output()
 			    .expect("Failed to search for the package(s).");
@@ -158,18 +144,11 @@ fn main() {
 	}
 	if matches.is_present("update") {
 		let child = Command::new("emerge")
-				.arg("-a")
-			    .arg("-v")
-			    .arg("-u")
-			    .arg("-D")
-			    .arg("-N")
-			    .arg("--with-bdeps")
-			    .arg("y")
-			    .arg("@world")
+				.args(&["-a", "-v", "-u", "-D", "-N", "--with-bdeps", "y", "@world"])
 				.stdin(Stdio::inherit())
 				.stdout(Stdio::inherit())
 			    .output()
-			    .expect("Failed to remove the package(s).");
+			    .expect("Failed to update packages.");
 		io::stdout().write_all(&child.stdout).unwrap();
 	}
 	if matches.is_present("world") {

@@ -15,6 +15,7 @@ USAGE:
     pkg [FLAGS] [OPTIONS]
 
 FLAGS:
+    -c, --clean      Remove any un-needed packages.
     -h, --help       Prints help information
     -l, --list       List currently installed packages.
     -S, --sync       Update repos and overlays.

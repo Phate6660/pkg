@@ -11,7 +11,11 @@ fn main() {
 		.version("0.0.1")
 		.author("Phate6660 <https://github.com/Phate6660>")
 		.about("A cli frontend for emerge. Why? Because I can.")
-        .arg(Arg::with_name("install")
+        .arg(Arg::with_name("clean")
+			 .short("c")
+			 .long("clean")
+			 .help("Remove any un-needed packages."))
+		.arg(Arg::with_name("install")
 			 .short("i")
 			 .long("install")
 			 .help("Install package(s). Note: It automatically confirms the installation.")
@@ -45,6 +49,13 @@ fn main() {
 			 .long("world")
 			 .help("Prints the contents of your world file."))
 		.get_matches();
+	if matches.is_present("clean") {
+		Command::new("emerge")
+			.arg("-D")
+			.arg("c")
+			.spawn()
+			.expect("Could not clean system of un-needed packages.");
+	}
 	if let Some(in_install) = matches.values_of("install") {
         for i in in_install {
 		    Command::new("emerge")

@@ -4,6 +4,14 @@ A cli frontend to emerge, written in Rust.
 ## Why?
 Because. I can.
 
+## Installation
+Rust and Cargo are required. It is recommended to install them via [rustup](https://www.rust-lang.org/tools/install).<br>
+There are 3 ways currently:
+
+1: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo install --path .` (Make sure `$HOME/.cargo/bin` is in your `$PATH`.)<br>
+2: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo build --release && mv target/release/pkg /usr/local/bin` (Build and manually move to `$PATH`.)<br>
+3: `cargo install --git https://github.com/Phate6660/pkg.git` (Make sure `$HOME/.cargo/bin` is in your `$PATH`.)
+
 ## Usage
 `$ pkg -h`
 ```

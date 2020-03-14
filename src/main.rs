@@ -155,6 +155,6 @@ fn main() {
 		let mut file = File::open("/var/lib/portage/world").expect("Unable to open the file");
         let mut contents = String::new();
         file.read_to_string(&mut contents).expect("Unable to read the file");
-        println!("{}", contents);
+        println!("{}", contents.trim());
 	}
 }

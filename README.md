@@ -8,8 +8,8 @@ Because. I can.
 Rust and Cargo are required. It is recommended to install them via [rustup](https://www.rust-lang.org/tools/install).<br>
 There are 3 ways currently:
 
-1: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo install --path .`<br>
-2: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo build --release && mv target/release/pkg /usr/local/bin`<br>
+1: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo install --path .`\*<br>
+2: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo build --release && mv target/release/pkg /usr/local/bin`\*\*<br>
 3: `cargo install --git https://github.com/Phate6660/pkg.git`\*
 
 \*(Make sure `$HOME/.cargo/bin` is in your `$PATH`.)<br>

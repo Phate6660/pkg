@@ -2,9 +2,10 @@
 name = "pkg-gentoo"
 version = "0.0.1"
 authors = ["Ash <ValleyKnight@protonmail.com>"]
+edition = "2018"
 description = "An emerge frontend with extra features."
 homepage = "https://github.com/Phate6660/pkg"
-edition = "2018"
+license = "MIT"
 
 [[bin]]
 name = "pkg"

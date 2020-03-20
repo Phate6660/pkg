@@ -8,12 +8,23 @@ Because. I can.
 Rust and Cargo are required. It is recommended to install them via [rustup](https://www.rust-lang.org/tools/install).<br>
 There are 3 ways currently:
 
+### Manually with cargo
 1: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo install --path .`\*<br>
 2: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo build --release && mv target/release/pkg /usr/local/bin`\*\*<br>
 3: `cargo install --git https://github.com/Phate6660/pkg.git`\*
 
 \*(Make sure `$HOME/.cargo/bin` is in your `$PATH`.)<br>
 \*\*(Build and manually move to `$PATH`.)
+
+### From crates.io
+`cargo install pkg-gentoo`
+
+### From overlay
+1. Install the overlay [p6nc-overlay](https://github.com/p6nc/overlay).
+2. Ensure repos and overlays are synced: `sudo emerge --sync`.
+3. `sudo emerge -atv pkg-gentoo`
+
+Note: Even though the package is named `pkg-gentoo`, the binary is still `pkg`.
 
 ## Usage
 `$ pkg -h`

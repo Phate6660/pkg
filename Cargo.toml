@@ -1,8 +1,14 @@
 [package]
-name = "pkg"
+name = "pkg-gentoo"
 version = "0.0.1"
 authors = ["Ash <ValleyKnight@protonmail.com>"]
+description = "An emerge frontend with extra features."
+homepage = "https://github.com/Phate6660/pkg"
 edition = "2018"
+
+[[bin]]
+name = "pkg"
+path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

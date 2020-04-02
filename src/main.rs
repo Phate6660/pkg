@@ -37,7 +37,7 @@ fn main() {
 		.arg(Arg::with_name("portup")
 			 .short("p")
 			 .long("portup")
-			 .help("One-shot emerge portage. Used when you need to specifically update porage."))
+			 .help("One-shot emerge portage. Used when you need to specifically update portage."))
 		.arg(Arg::with_name("remove")
 			 .short("r")
 			 .long("remove")

@@ -43,7 +43,7 @@ FLAGS:
     -c, --clean      Remove any un-needed packages.
     -h, --help       Prints help information
     -l, --list       List currently installed packages.
-    -p, --portup     One-shot emerge portage. Used when you need to specifically update porage.
+    -p, --portup     One-shot emerge portage. Used when you need to specifically update portage.
     -S, --sync       Update repos and overlays.
     -u, --update     Update any installed packages.
     -V, --version    Prints version information

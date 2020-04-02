@@ -52,7 +52,7 @@ FLAGS:
 OPTIONS:
     -f, --frem <PKGS>...          Force remove package(s).
     -i, --install <PKGS>...       Install package(s).
-	-r, --remove <PKGS>...        Remove package(s).
+    -r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).
 ```
 

@@ -1,6 +1,6 @@
 [package]
 name = "pkg-gentoo"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Ash <ValleyKnight@protonmail.com>"]
 edition = "2018"
 description = "An emerge frontend with extra features."
@@ -16,3 +16,4 @@ path = "src/main.rs"
 [dependencies]
 clap = "2.33.0"
 glob = "0.3.0"
+sedregex = "0.2.4"

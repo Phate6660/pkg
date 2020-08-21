@@ -1,7 +1,6 @@
-extern crate clap;
-extern crate glob;
 use clap::{Arg, App};
 use glob::glob;
+use sedregex::find_and_replace;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io::{self, Write};
@@ -97,9 +96,14 @@ fn main() {
 		}
     }
 	if matches.is_present("list") {
-		for entry in glob("/var/db/pkg/*/*/").expect("Failed to read glob pattern") {
+        for entry in glob("/var/db/pkg/*/*/").expect("Failed to read glob pattern") {
             match entry {
-                Ok(path) => println!("{:?}", path.display()),
+                Ok(path) => {
+                    let message = find_and_replace(&path.display().to_string(), &["s/\"//g"]).unwrap().to_string();
+                    let content: Vec<&str> = message.split('/').collect();
+                    let done = format!("{}/{}", content[4], content[5]);
+                    println!("{}", done)
+                }
                 Err(e) => println!("{:?}", e),
             }
         }

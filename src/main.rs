@@ -5,6 +5,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::{self, Write};
 use std::process::{Command,Stdio};
+use term;
 
 fn main() {
     let matches = App::new("pkg")
@@ -64,6 +65,7 @@ fn main() {
 			 .long("world")
 			 .help("Prints the contents of your world file."))
 		.get_matches();
+    let mut terminal = term::stdout().unwrap();
 	if matches.is_present("clean") {
 		let child = Command::new("emerge")
 			.args(&["-a", "-D", "-c"])
@@ -101,8 +103,12 @@ fn main() {
                 Ok(path) => {
                     let message = find_and_replace(&path.display().to_string(), &["s/\"//g"]).unwrap().to_string();
                     let content: Vec<&str> = message.split('/').collect();
-                    let done = format!("{}/{}", content[4], content[5]);
-                    println!("{}", done)
+                    terminal.attr(term::Attr::Bold).unwrap();
+                    terminal.fg(term::color::WHITE).unwrap();
+                    write!(terminal, "{}/", content[4]);
+                    terminal.fg(term::color::YELLOW).unwrap();
+                    write!(terminal, "{}\n", content[5]);
+                    terminal.reset().unwrap();
                 }
                 Err(e) => println!("{:?}", e),
             }

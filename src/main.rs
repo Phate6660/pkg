@@ -16,6 +16,12 @@ fn main() {
 			 .short("c")
 			 .long("clean")
 			 .help("Remove any un-needed packages."))
+        .arg(Arg::with_name("deps")
+			 .short("d")
+			 .long("deps")
+			 .help("View the dependencies of a package. Note: Requires gentoolkit to be installed.")
+			 .value_name("PKG")
+			 .takes_value(true))
         .arg(Arg::with_name("frem")
 			 .short("f")
 			 .long("frem")
@@ -75,6 +81,17 @@ fn main() {
 			.expect("Could not clean system of un-needed packages.");
 		io::stdout().write_all(&child.stdout).unwrap();
 	}
+    if let Some(in_deps) = matches.values_of("deps") {
+        for d in in_deps {
+		    let child = Command::new("equery")
+				.args(&["g", d])
+				.stdin(Stdio::inherit())
+				.stdout(Stdio::inherit())
+			    .output()
+			    .expect("Failed to display the deps, is gentoolkit installed?");
+			io::stdout().write_all(&child.stdout).unwrap();
+		}
+    }
 	if let Some(in_frem) = matches.values_of("frem") {
         for f in in_frem {
 		    let child = Command::new("emerge")

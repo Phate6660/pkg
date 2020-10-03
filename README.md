@@ -50,6 +50,7 @@ FLAGS:
     -w, --world      Prints the contents of your world file.
 
 OPTIONS:
+    -d, --deps <PKG>              View the dependencies of a package. Note: Requires gentoolkit to be installed.
     -f, --frem <PKGS>...          Force remove package(s).
     -i, --install <PKGS>...       Install package(s).
     -r, --remove <PKGS>...        Remove package(s).

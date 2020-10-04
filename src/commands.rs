@@ -27,8 +27,8 @@ pub fn deps(d: &str) {
 }
 
 #[cfg(not(feature = "gentoolkit"))]
-pub fn deps() {
-    println!("You did not enable the gentoolkit feature.");
+pub fn deps(d: &str) {
+    println!("Can not list deps of {}, you did not enable the gentoolkit feature.", d);
 }
 
 pub fn frem(f: &str) {

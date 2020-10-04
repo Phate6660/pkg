@@ -27,7 +27,7 @@ Note: Even though the package is named `pkg-gentoo`, the binary is still `pkg`.
 ## Usage
 `$ pkg -h`
 ```
-pkg 0.0.6
+pkg 0.0.7
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge, plus some extra features. Why? Because I can.
 

@@ -4,7 +4,7 @@ use commands::*;
 
 fn main() {
     let matches = App::new("pkg")
-		.version("0.0.6")
+		.version("0.0.7")
 		.author("Phate6660 <https://github.com/Phate6660>")
 		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.\n\nNote: Package operations require root.\nSo run with your preferred method of privilege elevation, otherwise emerge will ask if you want to pretend.")
         .arg(Arg::with_name("clean")

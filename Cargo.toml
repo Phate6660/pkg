@@ -1,6 +1,6 @@
 [package]
 name = "pkg-gentoo"
-version = "0.0.5"
+version = "0.0.6"
 authors = ["Ash <ValleyKnight@protonmail.com>"]
 edition = "2018"
 description = "An emerge frontend with extra features."
@@ -12,6 +12,9 @@ name = "pkg"
 path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+gentoolkit = []
 
 [dependencies]
 clap = "2.33.0"

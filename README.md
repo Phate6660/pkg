@@ -5,21 +5,19 @@ A cli frontend to emerge, written in Rust.
 Because. I can.
 
 ## Installation
-Rust and Cargo are required. It is recommended to install them via [rustup](https://www.rust-lang.org/tools/install).<br>
-There are 3 ways currently:
+Rust and Cargo are required. It is recommended to install them via [rustup](https://www.rust-lang.org/tools/install).
+
+## Features
+- gentoolkit: Enable this if you have gentoolkit installed and you can check the deps of packages.
 
 ### Manually with cargo
-1: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo install --path .`\*<br>
-2: `git clone https://github.com/Phate6660/pkg && cd pkg && cargo build --release && mv target/release/pkg /usr/local/bin`\*\*<br>
-3: `cargo install --git https://github.com/Phate6660/pkg.git`\*
-
-\*(Make sure `$HOME/.cargo/bin` is in your `$PATH`.)<br>
-\*\*(Build and manually move to `$PATH`.)
+1: `cargo install --git https://github.com/Phate6660/pkg.git`
 
 ### From crates.io
 `cargo install pkg-gentoo`
 
 ### From overlay
+Note: This is currently outdated, will update soon.<br>
 1. Install the overlay [p6nc-overlay](https://github.com/p6nc/overlay).
 2. Ensure repos and overlays are synced: `sudo emerge --sync`.
 3. `sudo emerge -atv pkg-gentoo`
@@ -29,7 +27,7 @@ Note: Even though the package is named `pkg-gentoo`, the binary is still `pkg`.
 ## Usage
 `$ pkg -h`
 ```
-pkg 0.0.1
+pkg 0.0.6
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge, plus some extra features. Why? Because I can.
 

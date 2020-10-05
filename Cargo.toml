@@ -1,6 +1,6 @@
 [package]
 name = "pkg-gentoo"
-version = "0.0.8"
+version = "0.0.9"
 authors = ["Ash <ValleyKnight@protonmail.com>"]
 edition = "2018"
 description = "An emerge frontend with extra features."

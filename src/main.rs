@@ -4,7 +4,7 @@ use commands::*;
 
 fn main() {
     let matches = App::new("pkg")
-		.version("0.0.8")
+		.version("0.0.9")
 		.author("Phate6660 <https://github.com/Phate6660>")
 		.about("A cli frontend for emerge, plus some extra features. Why? Because I can.\n\nNote: Package operations require root.\nSo run with your preferred method of privilege elevation, otherwise emerge will ask if you want to pretend.")
         .arg(Arg::with_name("clean")
@@ -35,6 +35,12 @@ fn main() {
 			 .short("l")
 			 .long("list")
 			 .help("List currently installed packages."))
+        .arg(Arg::with_name("meta")
+			 .short("m")
+			 .long("metadata")
+			 .help("View the metadata of a package. Note: Requires gentoolkit to be installed.")
+			 .value_name("PKG")
+			 .takes_value(true))
 		.arg(Arg::with_name("portup")
 			 .short("p")
 			 .long("portup")
@@ -86,6 +92,11 @@ fn main() {
     }
     if matches.is_present("list") {
         list();
+    }
+    if let Some(in_meta) = matches.values_of("meta") {
+        for m in in_meta {
+            meta(m);
+        }
     }
     if matches.is_present("portup") {
         portup();

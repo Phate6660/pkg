@@ -72,6 +72,22 @@ pub fn list() {
     }
 }
 
+#[cfg(feature = "gentoolkit")]
+pub fn meta(m: &str) {
+    let child = Command::new("equery")
+        .args(&["m", m])
+        .stdin(Stdio::inherit())
+        .stdout(Stdio::inherit())
+        .output()
+        .expect("Failed to display the metadata, is gentoolkit installed?");
+    io::stdout().write_all(&child.stdout).unwrap();
+}
+
+#[cfg(not(feature = "gentoolkit"))]
+pub fn meta(m: &str) {
+    println!("Can not list metadata of {}, you did not enable the gentoolkit feature.", m);
+}
+
 pub fn portup() {
     let child = Command::new("emerge")
         .args(&["-a", "-1", "sys-apps/portage"])

@@ -27,7 +27,7 @@ Note: Even though the package is named `pkg-gentoo`, the binary is still `pkg`.
 ## Usage
 `$ pkg -h`
 ```
-pkg 0.0.7
+pkg 0.0.9
 Phate6660 <https://github.com/Phate6660>
 A cli frontend for emerge, plus some extra features. Why? Because I can.
 
@@ -51,6 +51,7 @@ OPTIONS:
     -d, --deps <PKG>              View the dependencies of a package. Note: Requires gentoolkit to be installed.
     -f, --frem <PKGS>...          Force remove package(s).
     -i, --install <PKGS>...       Install package(s).
+    -m, --metadata <PKG>          View the metadata of a package. Note: Requires gentoolkit to be installed.
     -r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).
 ```

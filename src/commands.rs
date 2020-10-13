@@ -62,9 +62,11 @@ pub fn list() {
                 let mut terminal = term::stdout().unwrap();
                 terminal.attr(term::Attr::Bold).unwrap();
                 terminal.fg(term::color::WHITE).unwrap();
-                write!(terminal, "{}/", content[4]);
+                write!(terminal, "{}/", content[4])
+                    .expect("Could not write the package category.");
                 terminal.fg(term::color::YELLOW).unwrap();
-                writeln!(terminal, "{}", content[5]);
+                writeln!(terminal, "{}", content[5])
+                    .expect("Could not write the package name and version.");
                 terminal.reset().unwrap();
             }
             Err(e) => println!("{:?}", e),
@@ -134,6 +136,22 @@ pub fn update() {
         .output()
         .expect("Failed to update packages.");
     io::stdout().write_all(&child.stdout).unwrap();
+}
+
+#[cfg(feature = "gentoolkit")]
+pub fn useflags(u: &str) {
+    let child = Command::new("equery")
+        .args(&["u", u])
+        .stdin(Stdio::inherit())
+        .stdout(Stdio::inherit())
+        .output()
+        .expect("Failed to display the USE flags, is gentoolkit installed?");
+    io::stdout().write_all(&child.stdout).unwrap();
+}
+
+#[cfg(not(feature = "gentoolkit"))]
+pub fn useflags(u: &str) {
+    println!("Can not list the USE flags of {}, you did not enable the gentoolkit feature.", u);
 }
 
 pub fn world() {

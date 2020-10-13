@@ -63,6 +63,12 @@ fn main() {
 			 .short("u")
 			 .long("update")
 			 .help("Update any installed packages."))
+        .arg(Arg::with_name("useflags")
+			 .short("U")
+			 .long("useflags")
+			 .help("View the USE flags of a package. Note: Requires gentoolkit to be installed.")
+			 .value_name("PKG")
+			 .takes_value(true))
 		.arg(Arg::with_name("sync")
 			 .short("S")
 			 .long("sync")
@@ -116,6 +122,11 @@ fn main() {
     }
     if matches.is_present("update") {
         update();
+    }
+    if let Some(in_useflags) = matches.values_of("useflags") {
+        for u in in_useflags {
+            useflags(u);
+        }
     }
     if matches.is_present("world") {
         world();

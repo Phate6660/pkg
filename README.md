@@ -54,6 +54,7 @@ OPTIONS:
     -m, --metadata <PKG>          View the metadata of a package. Note: Requires gentoolkit to be installed.
     -r, --remove <PKGS>...        Remove package(s).
     -s, --search <SEARCHES>...    Search for package(s).
+    -U, --useflags <PKG>          View the USE flags of a package. Note: Requires gentoolkit to be installed.
 ```
 
 ## Roadmap

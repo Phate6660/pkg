@@ -17,6 +17,12 @@ fn main() {
 			 .help("View the dependencies of a package. Note: Requires gentoolkit to be installed.")
 			 .value_name("PKG")
 			 .takes_value(true))
+        .arg(Arg::with_name("files")
+			 .short("F")
+			 .long("files")
+			 .help("View the files of a package. Note: Requires gentoolkit to be installed.")
+			 .value_name("PKGS")
+			 .takes_value(true))
         .arg(Arg::with_name("frem")
 			 .short("f")
 			 .long("frem")
@@ -86,6 +92,11 @@ fn main() {
             deps(d);
         }
     }
+    if let Some(in_files) = matches.values_of("files") {
+        for F in in_files {
+            files(F);
+        }
+    }
     if let Some(in_frem) = matches.values_of("frem") {
         for f in in_frem {
             frem(f);
@@ -124,8 +135,8 @@ fn main() {
         update();
     }
     if let Some(in_useflags) = matches.values_of("useflags") {
-        for u in in_useflags {
-            useflags(u);
+        for U in in_useflags {
+            useflags(U);
         }
     }
     if matches.is_present("world") {

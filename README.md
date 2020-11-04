@@ -49,6 +49,7 @@ FLAGS:
 
 OPTIONS:
     -d, --deps <PKG>              View the dependencies of a package. Note: Requires gentoolkit to be installed.
+    -F, --files <PKGS>            View the files of a package. Note: Requires gentoolkit to be installed.
     -f, --frem <PKGS>...          Force remove package(s).
     -i, --install <PKGS>...       Install package(s).
     -m, --metadata <PKG>          View the metadata of a package. Note: Requires gentoolkit to be installed.

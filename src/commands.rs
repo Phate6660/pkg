@@ -31,6 +31,22 @@ pub fn deps(d: &str) {
     println!("Can not list deps of {}, you did not enable the gentoolkit feature.", d);
 }
 
+#[cfg(feature = "gentoolkit")]
+pub fn files(F: &str) {
+    let child = Command::new("equery")
+        .args(&["f", F])
+        .stdin(Stdio::inherit())
+        .stdout(Stdio::inherit())
+        .output()
+        .expect("Failed to display the files in the package, is gentoolkit installed?");
+    io::stdout().write_all(&child.stdout).unwrap();
+}
+
+#[cfg(not(feature = "gentoolkit"))]
+pub fn files(F: &str) {
+    println!("Can not list the files of {}, you did not enable the gentoolkit feature.", F);
+}
+
 pub fn frem(f: &str) {
     let child = Command::new("emerge")
         .args(&["-a", "-v", "-C", f])
@@ -139,9 +155,9 @@ pub fn update() {
 }
 
 #[cfg(feature = "gentoolkit")]
-pub fn useflags(u: &str) {
+pub fn useflags(U: &str) {
     let child = Command::new("equery")
-        .args(&["u", u])
+        .args(&["u", U])
         .stdin(Stdio::inherit())
         .stdout(Stdio::inherit())
         .output()
